@@ -86,6 +86,7 @@
 #![cfg_attr(all(test, feature = "nightly"), feature(test))]
 #[cfg(all(test, feature = "nightly"))] extern crate test;
 #[cfg(all(test, feature = "nightly"))] extern crate rand;
+extern crate rustc_serialize;
 
 use std::cmp::Ordering;
 use std::cmp;
@@ -196,6 +197,7 @@ static FALSE: bool = false;
 /// println!("{:?}", bv);
 /// println!("total bits set to true: {}", bv.iter().filter(|x| *x).count());
 /// ```
+#[derive(RustcEncodable, RustcDecodable)]
 pub struct BitVec<B=u32> {
     /// Internal representation of the bit vector
     storage: Vec<B>,
